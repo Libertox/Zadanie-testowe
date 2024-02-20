@@ -32,7 +32,7 @@ namespace TestTask
             map.localScale = new Vector3(mapHeight, map.localScale.y, mapWidth);        
         }
 
-        private Vector3 GetRandomPositionWithinMap()
+        public Vector3 GetRandomPositionWithinMap()
         {
             float maxPositionX = map.transform.position.x + mapHeight * 0.5f;
             float minPositionX = map.transform.position.x - mapHeight * 0.5f;
@@ -44,7 +44,7 @@ namespace TestTask
 
             float posZ = UnityEngine.Random.Range(minPositionZ, maxPositionZ);
 
-            return new Vector3(posX, map.transform.position.y, posZ);
+            return new Vector3(posX, 0, posZ);
         }
 
     }
