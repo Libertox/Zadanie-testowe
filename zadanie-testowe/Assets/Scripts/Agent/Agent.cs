@@ -30,6 +30,8 @@ namespace TestTask
         [SerializeField] private float speed;
         [SerializeField] private string agentName;
 
+        [SerializeField] private GameObject selectedIndicator;
+
         private int hp;
         private bool isSelected;
     
@@ -56,6 +58,7 @@ namespace TestTask
 
         public void Select()
         {
+            selectedIndicator.SetActive(true);
             isSelected = true;
             OnSelected?.Invoke(this, new OnSelectedEventArgs
             {
@@ -66,6 +69,7 @@ namespace TestTask
 
         public void Deselect()
         {
+            selectedIndicator.SetActive(false);
             isSelected = false;
             OnDeselected?.Invoke(this, EventArgs.Empty);
         }
