@@ -19,10 +19,13 @@ namespace TestTask
         {
             Ray ray = Camera.main.ScreenPointToRay(e.mousePosition);
             float maxDistance = 100f;
+
             if (Physics.Raycast(ray, out RaycastHit raycastHit, maxDistance, selectableObjectLayerMask))
             {
                 if(raycastHit.transform.TryGetComponent(out ISelectable selectable))
                 {
+                    ClearSelectAgent();
+
                     selectable.Select();
                     selectAgent = selectable as Agent;
                 }
@@ -32,7 +35,18 @@ namespace TestTask
                     selectAgent.SetPath(MapManager.Instance.GetShortPath(selectAgent.transform.position, raycastHit.point));
                 }
             }
+            else
+            {
+                ClearSelectAgent();
+            }
 
+        }
+
+        private void ClearSelectAgent()
+        {
+            if (selectAgent != null) selectAgent.Deselect();
+
+            selectAgent= null;
         }
     }
 }
