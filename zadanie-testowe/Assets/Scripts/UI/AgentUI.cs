@@ -15,8 +15,14 @@ namespace TestTask
         {
             Agent.OnDeselected += Agent_OnDeselected;
             Agent.OnSelected += Agent_OnSelected;
+            Agent.OnHealthChanged += Agent_OnHealthChanged;
 
             Hide();
+        }
+
+        private void Agent_OnHealthChanged(object sender, Agent.OnHealthChangedEventArgs e)
+        {
+            agentHearts[e.hp].gameObject.SetActive(false);
         }
 
         private void Agent_OnDeselected(object sender, EventArgs e)
@@ -59,6 +65,7 @@ namespace TestTask
         {
             Agent.OnDeselected -= Agent_OnDeselected;
             Agent.OnSelected -= Agent_OnSelected;
+            Agent.OnHealthChanged-= Agent_OnHealthChanged;
         }
 
     }

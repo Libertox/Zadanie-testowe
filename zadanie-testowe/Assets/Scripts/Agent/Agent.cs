@@ -9,10 +9,16 @@ namespace TestTask
     {
         public static event EventHandler<OnSelectedEventArgs> OnSelected;
         public static event EventHandler OnDeselected;
+        public static event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
 
         public class OnSelectedEventArgs: EventArgs
         {
             public string name;
+            public int hp;
+        }
+
+        public class OnHealthChangedEventArgs: EventArgs
+        {
             public int hp;
         }
 
@@ -113,12 +119,19 @@ namespace TestTask
         {
             hp -= damage;
 
+            if (isSelected)
+                OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs
+                {
+                    hp = hp,
+                });
+
             if (hp <= 0)
                 DestroySelf();
         }
 
         public void DestroySelf()
         {
+            Deselect();
             Destroy(gameObject);
         }
     }
