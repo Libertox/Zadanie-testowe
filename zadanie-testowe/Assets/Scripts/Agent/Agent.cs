@@ -7,9 +7,12 @@ namespace TestTask
 {
     public class Agent : MonoBehaviour, ISelectable, IDamageable
     {
+        private const int StartHP = 3;
+
         public static event EventHandler<OnSelectedEventArgs> OnSelected;
         public static event EventHandler OnDeselected;
         public static event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
+        public static event EventHandler OnDestroyed;
 
         public class OnSelectedEventArgs: EventArgs
         {
@@ -27,14 +30,24 @@ namespace TestTask
         [SerializeField] private float speed;
         [SerializeField] private string agentName;
 
-       
-        private int hp = 3;
+        private int hp;
         private bool isSelected;
     
-        private Stack<PathNode> pathNodes = new Stack<PathNode>();
+        private Stack<PathNode> pathNodes;
 
         private Collider[] detectColiders = new Collider[1];
-        private List<IDamageable> lastCollidingObject = new List<IDamageable>();
+        private List<IDamageable> lastCollidingObject;
+
+        public void Initialize(Vector3 startPosition)
+        {
+            gameObject.SetActive(true);
+            hp = StartHP;
+            pathNodes = new Stack<PathNode>();
+            lastCollidingObject = new List<IDamageable>();
+            transform.position = startPosition;
+            transform.rotation = Quaternion.identity;
+        }
+
 
         public void SetPath(Stack<PathNode> pathNodes)
         {
@@ -132,7 +145,7 @@ namespace TestTask
         public void DestroySelf()
         {
             Deselect();
-            Destroy(gameObject);
+            OnDestroyed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

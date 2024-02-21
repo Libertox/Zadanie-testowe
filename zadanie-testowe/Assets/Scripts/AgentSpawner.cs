@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace TestTask
 {
@@ -13,7 +14,7 @@ namespace TestTask
 
         [SerializeField] private int maxAgent;
 
-        [SerializeField] private GameObject agentPrefab;
+        [SerializeField] private Agent agentPrefab;
 
         [Header("Time Spawn Properties")]
         [SerializeField] private float minSpawnDuration;
@@ -24,10 +25,28 @@ namespace TestTask
         private float spawnDuration;
         private float time;
 
+        private ObjectPool<Agent> agentPool;
+
+        private void Awake()
+        {
+            Agent.OnDestroyed += Agent_OnDestroyed;       
+        }
+
         private void Start()
         {
+            agentPool = new ObjectPool<Agent>(
+               () => Instantiate(agentPrefab, MapManager.Instance.GetRandomPositionWithinMap(), Quaternion.identity),
+               (Agent agent) => agent.Initialize(MapManager.Instance.GetRandomPositionWithinMap()),
+               (Agent agent) => agent.gameObject.SetActive(false));
+
             CreateStartAgents();
             SetRandomSpawnDuration();
+        }
+
+        private void Agent_OnDestroyed(object sender, EventArgs e)
+        {
+            Agent agent = sender as Agent;
+            agentPool.Release(agent);
         }
 
         private void CreateStartAgents()
@@ -42,7 +61,7 @@ namespace TestTask
 
         private void SpawnAgent()
         {
-            Instantiate(agentPrefab, MapManager.Instance.GetRandomPositionWithinMap(), Quaternion.identity);
+            agentPool.Get();
             currentAgentNumber++;
         }
 
