@@ -1316,7 +1316,7 @@ MonoBehaviour:
   minStartingAgents: 3
   maxStartingAgents: 5
   maxAgent: 30
-  agentPrefab: {fileID: 3484215175451340889, guid: 1ad527563bba72c448689cd2025728a4,
+  agentPrefab: {fileID: 6509826377088086558, guid: 526807d5f5bb84344be5c0b4a38d0c7d,
     type: 3}
   minSpawnDuration: 2
   maxSpawnDuration: 6
