@@ -50,7 +50,7 @@ namespace TestTask
                 List<PathNode> nodes = new List<PathNode>();
                 for (int j = 0; j <= mapWidth / cellSize; j++)
                 {
-                    PathNode node = new PathNode(new Vector3(rightBottonCornerPosX, map.position.y, startPositonZ), cellSize, j, i);
+                    PathNode node = new PathNode(new Vector3(rightBottonCornerPosX, 0, startPositonZ), cellSize, j, i);
          
                     nodes.Add(node);
 
@@ -78,7 +78,7 @@ namespace TestTask
             return new Vector3(posX, 0, posZ);
         }
 
-        public Stack<PathNode> GetShortPaht(Vector3 startPoint, Vector3 endPoint)
+        public Stack<PathNode> GetShortPath(Vector3 startPoint, Vector3 endPoint)
         {
             Pathfinding pathfinding = new Pathfinding(pathNodeGrid, mapHeight / cellSize, mapWidth / cellSize);
             return pathfinding.FindPath(startPoint.x, startPoint.z, endPoint.x, endPoint.z);
