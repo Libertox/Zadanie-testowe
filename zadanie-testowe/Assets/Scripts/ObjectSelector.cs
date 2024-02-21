@@ -29,7 +29,6 @@ namespace TestTask
 
                 if(selectAgent != null)
                 {
-                    Debug.Log(raycastHit.point);
                     selectAgent.SetPath(MapManager.Instance.GetShortPath(selectAgent.transform.position, raycastHit.point));
                 }
             }
