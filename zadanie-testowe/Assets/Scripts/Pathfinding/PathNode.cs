@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 
-namespace TestTask.Pathfinding
+namespace TestTask.PathFinding
 {
     public class PathNode
     {

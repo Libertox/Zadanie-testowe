@@ -727,6 +727,7 @@ MonoBehaviour:
   mapWidth: 10
   mapHeight: 10
   map: {fileID: 561020533}
+  cellSize: 1
 --- !u!1 &1071591070
 GameObject:
   m_ObjectHideFlags: 0
