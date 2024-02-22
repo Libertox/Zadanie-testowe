@@ -1315,8 +1315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfe92660f745fd4c91d3ac8934ec274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minStartingAgents: 3
-  maxStartingAgents: 5
+  minStartingAgents: 30
+  maxStartingAgents: 30
   maxAgent: 30
   agentPrefabs:
   - {fileID: 4986975826637187856, guid: c6dfd85c6e64d7448a4f21966f0d7721, type: 3}

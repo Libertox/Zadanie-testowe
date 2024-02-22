@@ -39,8 +39,8 @@ namespace TestTask
 
         private Stack<PathNode> pathNodes;
 
-        private Collider[] detectColiders = new Collider[1];
-        private List<IDamageable> lastCollidingObject;
+        private Collider[] detectColiders = new Collider[10];
+        private List<IDamageable> lastCollidingObject = new List<IDamageable>();
 
         public void Initialize(Vector3 startPosition)
         {
@@ -50,8 +50,11 @@ namespace TestTask
             potrait = agentStatsSO.GetRandomPotrait();
             potraitBackground = agentStatsSO.GetRandomPotraitBackground();
             pathNodes = new Stack<PathNode>();
-            lastCollidingObject = new List<IDamageable>();
             transform.SetPositionAndRotation(startPosition, Quaternion.identity);
+
+            DetectCollisions();
+            lastCollidingObject = new List<IDamageable>();
+
         }
 
 
@@ -123,6 +126,8 @@ namespace TestTask
 
             foreach(var colider in detectColiders)
             {
+                if (colider == null) continue;
+
                 if(colider.TryGetComponent(out IDamageable damageable))
                 {
                     if (damageable == this as IDamageable) continue;
@@ -141,6 +146,8 @@ namespace TestTask
         
         public void TakeDamage(int damage)
         {
+            if(hp <= 0 ) return;
+
             hp -= damage;
 
             if (isSelected)
