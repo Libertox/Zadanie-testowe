@@ -6,9 +6,7 @@ using TestTask.PathFinding;
 namespace TestTask
 {
     public class Agent : MonoBehaviour, ISelectable, IDamageable
-    {
-        private const int StartHP = 3;
-
+    {   
         public static event EventHandler<OnSelectedEventArgs> OnSelected;
         public static event EventHandler OnDeselected;
         public static event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
@@ -27,14 +25,16 @@ namespace TestTask
 
         public int damage { get; set; } = 1;
 
-        [SerializeField] private float speed;
-        [SerializeField] private string agentName;
-
         [SerializeField] private GameObject selectedIndicator;
+        [SerializeField] private AgentStatsSO agentStatsSO;
 
+        private string agentName;
         private int hp;
         private bool isSelected;
-    
+        private Sprite potraitBackground;
+        private Sprite potrait;
+
+
         private Stack<PathNode> pathNodes;
 
         private Collider[] detectColiders = new Collider[1];
@@ -43,11 +43,13 @@ namespace TestTask
         public void Initialize(Vector3 startPosition)
         {
             gameObject.SetActive(true);
-            hp = StartHP;
+            hp = agentStatsSO.MaxHP;
+            agentName = agentStatsSO.GetRandomAgentName();
+            potrait = agentStatsSO.GetRandomPotrait();
+            potraitBackground = agentStatsSO.GetRandomPotraitBackground();
             pathNodes = new Stack<PathNode>();
             lastCollidingObject = new List<IDamageable>();
-            transform.position = startPosition;
-            transform.rotation = Quaternion.identity;
+            transform.SetPositionAndRotation(startPosition, Quaternion.identity);
         }
 
 
@@ -99,7 +101,7 @@ namespace TestTask
 
         private void MoveTowardsDestination(Vector3 destination)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * agentStatsSO.Speed);
         }
 
         private void RotateTowardsDirection(Vector3 direction)

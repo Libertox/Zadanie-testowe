@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95c94654ebe9044ea55417f2d1c409c, type: 3}
+  m_Name: SoliderStats
+  m_EditorClassIdentifier: 
+  <MaxHP>k__BackingField: 3
+  <Speed>k__BackingField: 4
+  names:
+  - Gareth
+  - Lancelot
+  - Percival
+  - Tristan
+  - Gawain
+  - Galahad
+  - Roland
+  - Cedric
+  - Reynard
+  - Baldwin
+  - Aldric
+  - Everard
+  - Geoffrey
+  - Thaddeus
+  potraitBackgrounds:
+  - {fileID: 21300000, guid: 43dc5d0b85f69a8448ecd4bb50842eac, type: 3}
+  - {fileID: 21300000, guid: 84f4c7ad368d9f1479b9195cda6c4dbe, type: 3}
+  - {fileID: 21300000, guid: 40077dfd990b02b4dbe1ce1f4c101592, type: 3}
+  - {fileID: 21300000, guid: c3388571411566448a96e0f3dc528164, type: 3}
+  - {fileID: 21300000, guid: 54e9a479daf2e2b4382a54672dc2caba, type: 3}
+  - {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
+  - {fileID: 21300000, guid: 6d8e8c066c8aaf845ac7e112a3f4c419, type: 3}
+  - {fileID: 21300000, guid: 536b1ed97485ee648842b07a56e63182, type: 3}
+  - {fileID: 21300000, guid: 83d3343dc1721254d8d8ffe5017411e6, type: 3}
+  - {fileID: 21300000, guid: e7e17fd859498be45be5335a873d3652, type: 3}
+  - {fileID: 21300000, guid: 91d05741c04c5484ab84e21565b0dbe3, type: 3}
+  - {fileID: 21300000, guid: 54fb29004b004ff469f4a89314107b71, type: 3}
+  - {fileID: 21300000, guid: fb810bfc74ae769438a345d41e368435, type: 3}
+  - {fileID: 21300000, guid: dc30fc5af848d2e42b9bd7914fb79067, type: 3}
+  - {fileID: 21300000, guid: f62ea2c22b08b8b40adfe05998fd9a23, type: 3}
+  - {fileID: 21300000, guid: 50024eb663e53464888d3c8b101de681, type: 3}
+  - {fileID: 21300000, guid: a3e31725045765c4b8c5f60b1e57ee29, type: 3}
+  - {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
+  - {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
+  potraits:
+  - {fileID: 21300000, guid: 9f9fcbbc7f40d89499a390b217534bf2, type: 3}
+  - {fileID: 21300000, guid: be19dc3d90cf9854da0da64d26b06168, type: 3}
+  - {fileID: 21300000, guid: a3c4e3a39146d7d429f2ca3c85dee856, type: 3}
+  - {fileID: 21300000, guid: 112c48ad71ab8dc41a8d8b8a42b768d1, type: 3}
+  - {fileID: 21300000, guid: 9e1b53cdb5338674586e6e55f3a3080b, type: 3}
+  - {fileID: 21300000, guid: 9492f0f82daff07439a6c71b763d2409, type: 3}
+  - {fileID: 21300000, guid: 7b8ca6646fe21754db856c51477c8b95, type: 3}
+  - {fileID: 21300000, guid: e20f81ecd06479749882537119c196a9, type: 3}
+  - {fileID: 21300000, guid: 3907aa0eebf0c69459835c4e2c6d427f, type: 3}
+  - {fileID: 21300000, guid: 225be3949783349409a04e63feea0826, type: 3}
+  - {fileID: 21300000, guid: 6330ae5da18beb7498da1fe26eaf9cfb, type: 3}

@@ -83,6 +83,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Solider
       objectReference: {fileID: 0}
+    - target: {fileID: 3484215175451340889, guid: 1ad527563bba72c448689cd2025728a4,
+        type: 3}
+      propertyPath: agentStatsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e86af422956969468a4b48a10fa4772,
+        type: 2}
     - target: {fileID: 8072833124463227947, guid: 1ad527563bba72c448689cd2025728a4,
         type: 3}
       propertyPath: m_Size.x
