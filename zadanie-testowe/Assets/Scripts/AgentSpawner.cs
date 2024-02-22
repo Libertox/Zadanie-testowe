@@ -14,7 +14,7 @@ namespace TestTask
 
         [SerializeField] private int maxAgent;
 
-        [SerializeField] private Agent agentPrefab;
+        [SerializeField] private List<Agent> agentPrefabs;
 
         [Header("Time Spawn Properties")]
         [SerializeField] private float minSpawnDuration;
@@ -32,10 +32,16 @@ namespace TestTask
             Agent.OnDestroyed += Agent_OnDestroyed;       
         }
 
+        private void Agent_OnDestroyed(object sender, EventArgs e)
+        {
+            Agent agent = sender as Agent;
+            agentPool.Release(agent);
+        }
+
         private void Start()
         {
             agentPool = new ObjectPool<Agent>(
-               () => Instantiate(agentPrefab, MapManager.Instance.GetRandomPositionWithinMap(), Quaternion.identity),
+               () => Instantiate(GetRandomAgentPrefab(), MapManager.Instance.GetRandomPositionWithinMap(), Quaternion.identity),
                (Agent agent) => agent.Initialize(MapManager.Instance.GetRandomPositionWithinMap()),
                (Agent agent) => agent.gameObject.SetActive(false));
 
@@ -43,10 +49,10 @@ namespace TestTask
             SetRandomSpawnDuration();
         }
 
-        private void Agent_OnDestroyed(object sender, EventArgs e)
+        private Agent GetRandomAgentPrefab()
         {
-            Agent agent = sender as Agent;
-            agentPool.Release(agent);
+            int randomIndex = UnityEngine.Random.Range(0, agentPrefabs.Count);
+            return agentPrefabs[randomIndex];
         }
 
         private void CreateStartAgents()

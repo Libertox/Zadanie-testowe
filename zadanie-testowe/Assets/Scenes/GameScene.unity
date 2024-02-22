@@ -1318,8 +1318,10 @@ MonoBehaviour:
   minStartingAgents: 3
   maxStartingAgents: 5
   maxAgent: 30
-  agentPrefab: {fileID: 6509826377088086558, guid: 526807d5f5bb84344be5c0b4a38d0c7d,
-    type: 3}
+  agentPrefabs:
+  - {fileID: 4986975826637187856, guid: c6dfd85c6e64d7448a4f21966f0d7721, type: 3}
+  - {fileID: 6509826377088086558, guid: 526807d5f5bb84344be5c0b4a38d0c7d, type: 3}
+  - {fileID: 8080335449395255760, guid: ef731fc23df99aa47b860259e5781e5e, type: 3}
   minSpawnDuration: 2
   maxSpawnDuration: 6
 --- !u!4 &1182792644

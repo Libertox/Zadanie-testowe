@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TestTask.PathFinding;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 namespace TestTask
@@ -50,7 +51,7 @@ namespace TestTask
                 List<PathNode> nodes = new List<PathNode>();
                 for (int j = 0; j <= mapWidth / cellSize; j++)
                 {
-                    PathNode node = new PathNode(new Vector3(rightBottonCornerPosX, 0, startPositonZ), cellSize, j, i);
+                    PathNode node = new PathNode(new Vector3(rightBottonCornerPosX, map.position.y, startPositonZ), cellSize, j, i);
          
                     nodes.Add(node);
 
@@ -75,7 +76,7 @@ namespace TestTask
 
             float posZ = UnityEngine.Random.Range(minPositionZ, maxPositionZ);
 
-            return new Vector3(posX, 0, posZ);
+            return new Vector3(posX, map.position.y, posZ);
         }
 
         public Stack<PathNode> GetShortPath(Vector3 startPoint, Vector3 endPoint)
