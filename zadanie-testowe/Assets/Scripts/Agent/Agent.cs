@@ -162,7 +162,8 @@ namespace TestTask
 
         public void DestroySelf()
         {
-            Deselect();
+            if(isSelected) Deselect();
+
             OnDestroyed?.Invoke(this, EventArgs.Empty);
         }
     }
