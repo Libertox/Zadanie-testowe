@@ -30,6 +30,8 @@ namespace TestTask.PathFinding
             PathNode startPathNode = GetPathNodeFromPosition(startPosX, startPosZ);
             PathNode endPathNode = GetPathNodeFromPosition(endPosX, endPosZ);
 
+            if (startPathNode == null || endPathNode == null) return new Stack<PathNode>();
+          
 
             closedList = new List<PathNode>();
             openList = new List<PathNode> { startPathNode };
@@ -81,7 +83,7 @@ namespace TestTask.PathFinding
                 }
 
             }
-            return null;
+            return new Stack<PathNode>();
 
         }
 
