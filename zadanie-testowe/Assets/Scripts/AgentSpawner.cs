@@ -59,7 +59,7 @@ namespace TestTask
         {
             int startAgentsNumber = UnityEngine.Random.Range(minStartingAgents, maxStartingAgents + 1);
            
-            for (int i = 1; i < startAgentsNumber; i++)
+            for (int i = 0; i < startAgentsNumber; i++)
             {
                 SpawnAgent();
             }
