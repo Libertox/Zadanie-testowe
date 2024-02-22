@@ -16,6 +16,8 @@ namespace TestTask
         {
             public string name;
             public int hp;
+            public Sprite potraitBackground;
+            public Sprite potrait;
         }
 
         public class OnHealthChangedEventArgs: EventArgs
@@ -65,7 +67,10 @@ namespace TestTask
             OnSelected?.Invoke(this, new OnSelectedEventArgs
             {
                 name = agentName,
-                hp = hp
+                hp = hp,
+                potraitBackground = potraitBackground,
+                potrait = potrait,
+
             });
         }
 

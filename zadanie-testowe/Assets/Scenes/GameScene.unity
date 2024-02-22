@@ -399,6 +399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentNameText: {fileID: 1392473289}
+  portraitBackgroundImage: {fileID: 342062939}
+  portraitImage: {fileID: 290846001}
   agentHearts:
   - {fileID: 1071591071}
   - {fileID: 1218505832}

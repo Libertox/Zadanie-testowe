@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TestTask
 {
     public class AgentUI: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI agentNameText;
+
+        [SerializeField] private Image portraitBackgroundImage;
+        [SerializeField] private Image portraitImage;
 
         [SerializeField] private List<Transform> agentHearts;
 
@@ -33,6 +37,7 @@ namespace TestTask
         private void Agent_OnSelected(object sender, Agent.OnSelectedEventArgs e)
         {
             UpdateAgentName(e.name);
+            UpdatePortrait(e.potraitBackground, e.potrait);
             UpdateAgentHearts(e.hp);
 
             Show();
@@ -42,6 +47,14 @@ namespace TestTask
         {
             agentNameText.SetText(agentName);
         }
+
+        private void UpdatePortrait(Sprite portraitBackground, Sprite portrait)
+        {
+            portraitImage.sprite = portrait;
+            portraitBackgroundImage.sprite = portraitBackground;
+        }
+
+
 
         private void UpdateAgentHearts(int agentHp)
         {
