@@ -7,7 +7,7 @@ namespace TestTask
     [CreateAssetMenu(fileName = "AgentStats", menuName = "ScriptableObject/AgentStats")]
     public class AgentStatsSO: ScriptableObject
     {
-        [field: SerializeField] public int MaxHP { get; private set; }
+        public int MaxHP { get; private set; } = 3;
         [field: SerializeField] public float Speed { get; private set; }
 
         [SerializeField] private List<string> names;

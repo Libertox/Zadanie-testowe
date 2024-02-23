@@ -36,12 +36,13 @@ namespace TestTask
         {
             Agent agent = sender as Agent;
             agentPool.Release(agent);
+            currentAgentNumber--;
         }
 
         private void Start()
         {
             agentPool = new ObjectPool<Agent>(
-               () => Instantiate(GetRandomAgentPrefab(), MapManager.Instance.GetRandomPositionWithinMap(), Quaternion.identity),
+               () => Instantiate(GetRandomAgentPrefab()),
                (Agent agent) => agent.Initialize(MapManager.Instance.GetRandomPositionWithinMap()),
                (Agent agent) => agent.gameObject.SetActive(false));
 
@@ -89,12 +90,11 @@ namespace TestTask
             }
         }
 
-        private bool CanSpawnNewAgent()
+        private bool CanSpawnNewAgent() => currentAgentNumber < maxAgent;
+
+        private void OnDestroy()
         {
-            return currentAgentNumber <= maxAgent;
+            Agent.OnDestroyed -= Agent_OnDestroyed;
         }
-
-
-
     }
 }

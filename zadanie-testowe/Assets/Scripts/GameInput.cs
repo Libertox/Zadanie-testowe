@@ -39,11 +39,8 @@ namespace TestTask
             });
         }
 
-        private Vector2 GetMousePosition()
-        {
-            return playerInput.Player.MousePosition.ReadValue<Vector2>();
-        }
-
+        private Vector2 GetMousePosition() => playerInput.Player.MousePosition.ReadValue<Vector2>();
+      
         private void OnDestroy()
         {
             playerInput.Player.MouseLeftClick.performed-= MouseLeftClick_performed;

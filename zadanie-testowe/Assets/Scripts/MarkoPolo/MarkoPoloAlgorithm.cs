@@ -6,8 +6,8 @@ namespace TestTask.MarkoPolo
 {
     public class MarkoPoloAlgorithm
     {
-         private int startNumber;
-         private int endNumber;
+         private readonly int startNumber;
+         private readonly int endNumber;
 
         public MarkoPoloAlgorithm(int startNumber, int endNumber)
         {

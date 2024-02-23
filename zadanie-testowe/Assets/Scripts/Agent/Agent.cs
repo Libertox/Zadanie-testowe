@@ -39,7 +39,7 @@ namespace TestTask
 
         private Stack<PathNode> pathNodes;
 
-        private Collider[] detectColiders = new Collider[10];
+        private readonly Collider[] detectColiders = new Collider[10];
         private List<IDamageable> lastCollidingObject = new List<IDamageable>();
 
         public void Initialize(Vector3 startPosition)
@@ -57,12 +57,8 @@ namespace TestTask
 
         }
 
-
-        public void SetPath(Stack<PathNode> pathNodes)
-        {
-            this.pathNodes = pathNodes;
-        }
-
+        public void SetPath(Stack<PathNode> pathNodes) => this.pathNodes = pathNodes;
+    
         public void Select()
         {
             selectedIndicator.SetActive(true);
@@ -84,6 +80,26 @@ namespace TestTask
             OnDeselected?.Invoke(this, EventArgs.Empty);
         }
 
+        public void TakeDamage(int damage)
+        {
+            if (hp <= 0) return;
+
+            hp -= damage;
+
+            if (isSelected)
+                OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { hp = hp });
+
+            if (hp <= 0)
+                DestroySelf();
+        }
+
+        public void DestroySelf()
+        {
+            if (isSelected) Deselect();
+
+            OnDestroyed?.Invoke(this, EventArgs.Empty);
+        }
+
         private void Update()
         {           
             if (pathNodes.Count == 0) return;
@@ -100,13 +116,6 @@ namespace TestTask
             RotateTowardsDirection(direction);
         }
 
-        private void FixedUpdate()
-        {
-            if (!isSelected) return;
-
-            DetectCollisions();
-        }
-
         private void MoveTowardsDestination(Vector3 destination)
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * agentStatsSO.Speed);
@@ -116,6 +125,13 @@ namespace TestTask
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = targetRotation;
+        }
+
+        private void FixedUpdate()
+        {
+            if (!isSelected) return;
+
+            DetectCollisions();
         }
 
         private void DetectCollisions()
@@ -144,27 +160,6 @@ namespace TestTask
             lastCollidingObject = detectObject;
         }
         
-        public void TakeDamage(int damage)
-        {
-            if(hp <= 0 ) return;
-
-            hp -= damage;
-
-            if (isSelected)
-                OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs
-                {
-                    hp = hp,
-                });
-
-            if (hp <= 0)
-                DestroySelf();
-        }
-
-        public void DestroySelf()
-        {
-            if(isSelected) Deselect();
-
-            OnDestroyed?.Invoke(this, EventArgs.Empty);
-        }
+        
     }
 }

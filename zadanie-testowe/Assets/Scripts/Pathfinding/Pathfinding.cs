@@ -12,17 +12,17 @@ namespace TestTask.PathFinding
 
         private readonly List<List<PathNode>> pathNodeGrid;
 
-        private readonly float height;
-        private readonly float width;
+        private readonly int height;
+        private readonly int width;
 
         private List<PathNode> openList;
         private List<PathNode> closedList;
 
-        public Pathfinding(List<List<PathNode>> pathNodeGrid, float height, float width)
+        public Pathfinding(List<List<PathNode>> pathNodeGrid)
         {
             this.pathNodeGrid = pathNodeGrid;
-            this.height = height;
-            this.width = width;
+            this.height = pathNodeGrid[0].Count;
+            this.width = pathNodeGrid.Count;
         }
 
         public Stack<PathNode> FindPath(float startPosX, float startPosZ, float endPosX, float endPosZ)
@@ -126,25 +126,25 @@ namespace TestTask.PathFinding
                 if (currentNode.GridIndexHeight - 1 >= 0)
                     neighbourList.Add(GetPathNodeFromGridIndex(currentNode.GridIndexWidth - 1, currentNode.GridIndexHeight - 1));
 
-                if (currentNode.GridIndexHeight + 1 <= height)
+                if (currentNode.GridIndexHeight + 1 < height)
                     neighbourList.Add(GetPathNodeFromGridIndex(currentNode.GridIndexWidth - 1, currentNode.GridIndexHeight + 1));
             }
 
-            if (currentNode.GridIndexWidth + 1 <= width)
+            if (currentNode.GridIndexWidth + 1 < width)
             {
                 neighbourList.Add(GetPathNodeFromGridIndex(currentNode.GridIndexWidth + 1, currentNode.GridIndexHeight));
 
                 if (currentNode.GridIndexHeight - 1 >= 0)
                     neighbourList.Add(GetPathNodeFromGridIndex(currentNode.GridIndexWidth + 1, currentNode.GridIndexHeight - 1));
 
-                if (currentNode.GridIndexHeight + 1 <= height)
+                if (currentNode.GridIndexHeight + 1 < height)
                     neighbourList.Add(GetPathNodeFromGridIndex(currentNode.GridIndexWidth + 1, currentNode.GridIndexHeight + 1));
             }
 
             if (currentNode.GridIndexHeight - 1 >= 0)
                 neighbourList.Add(GetPathNodeFromGridIndex(currentNode.GridIndexWidth, currentNode.GridIndexHeight - 1));
 
-            if (currentNode.GridIndexHeight + 1 <= height)
+            if (currentNode.GridIndexHeight + 1 < height)
                 neighbourList.Add(GetPathNodeFromGridIndex(currentNode.GridIndexWidth, currentNode.GridIndexHeight + 1));
 
 

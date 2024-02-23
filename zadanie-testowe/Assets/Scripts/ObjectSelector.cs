@@ -22,18 +22,10 @@ namespace TestTask
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit, maxDistance, selectableObjectLayerMask))
             {
-                if(raycastHit.transform.TryGetComponent(out ISelectable selectable))
-                {
-                    ClearSelectAgent();
+                HandleSelectableClick(raycastHit);
 
-                    selectable.Select();
-                    selectAgent = selectable as Agent;
-                }
-
-                if(selectAgent != null)
-                {
+                if (selectAgent != null)
                     selectAgent.SetPath(MapManager.Instance.GetShortPath(selectAgent.transform.position, raycastHit.point));
-                }
             }
             else
             {
@@ -42,11 +34,22 @@ namespace TestTask
 
         }
 
+        private void HandleSelectableClick(RaycastHit raycastHit)
+        {
+            if (raycastHit.transform.TryGetComponent(out ISelectable selectable))
+            {
+                ClearSelectAgent();
+
+                selectable.Select();
+                selectAgent = selectable as Agent;
+            }
+        }
+
         private void ClearSelectAgent()
         {
             if (selectAgent != null) selectAgent.Deselect();
 
-            selectAgent= null;
+            selectAgent = null;
         }
     }
 }

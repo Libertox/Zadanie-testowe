@@ -54,8 +54,6 @@ namespace TestTask
             portraitBackgroundImage.sprite = portraitBackground;
         }
 
-
-
         private void UpdateAgentHearts(int agentHp)
         {
             for (int i = 0; i < agentHearts.Count; i++)
@@ -64,16 +62,10 @@ namespace TestTask
             }
         }
 
-        private void Show()
-        {
-            gameObject.SetActive(true);
-        }
-
-        private void Hide()
-        {
-            gameObject.SetActive(false);
-        }
-
+        private void Show() => gameObject.SetActive(true);
+       
+        private void Hide() => gameObject.SetActive(false);
+      
         private void OnDestroy()
         {
             Agent.OnDeselected -= Agent_OnDeselected;
